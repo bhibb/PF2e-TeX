@@ -8,6 +8,7 @@
 % Some extra packages
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Include graphicx package
 
 % Autogen text...
 \usepackage{lipsum}
@@ -51,19 +52,15 @@
 % Your cover image, if you have one
 \pfMakeCover[
   image = ai-generated-cover-art,
-  title = PF2e-\TeX Spellbook,
-  subtitle = {Is it a spellbook, or a cheatsheet?} % Need the braces if there is a comma in the name
+  title = One Hour One Shots,
+  subtitle = {21 levels of Adventure, one hour at a time} % Need the braces if there is a comma in the name
 ]
 
-This is the inside cover.
-Put some copyright stuff here, and all the legal stuff.
-Blah blah blah, copyright me and stuff...
+Made by Bryson Starling.
 
-\lipsum[1-5]
-
-\InsertORC{I'm attributing stuff...\\
-}{I'm reserving Potatos!!\\
-}{Licensed all material from Sorcerers on the Shore}
+\InsertORC{No idea what to say is attributed here...\\
+}{Free to use\\
+}{what goes here too?}
 
 % Inserts Table of Contents
 \clearpage
@@ -71,33 +68,9 @@ Blah blah blah, copyright me and stuff...
 
 % Your content goes here...
 \mainmatter
-\pfMakeSplashHeader[
-  image = ai-generated-splash,
-  title = Splash image test title,
-  headerHeight = -7cm,
-  textBodyHeight = 4.5cm
-]
 
-\chapter{Intro}
-
-You know how most Paizo products have a cool splash section at the beginning of the chapter before it gets into the nitty-gritty of the text?
-Well I haven't implemented anything like that yet!
-So be patient while I work on that.
-
-\begin{multicols}{2}
-
-  This is the intro chapter, where I introduce things!
-  Most of this is going to be showcasing the different functionality that is built in to these styles.
-  Each "chapter" is going to feature a different set of features.
-  Feel free to look at the source, at this document, and the others under /docs.
-  It will give you an idea of how much of this is intended to work.
-
-  First of all, I recommend not typing everything into one *.tex file.
-  For many reasons, but mainly as it is easier to organize your thoughts and whatnot if they are in separate chapters.
-
-  Thus, I do this:
-
-\end{multicols}
+% Put some kind of intro to the book here.
+\include{docs/islandOne}
 
 \include{docs/actions}
 \include{docs/sections}
