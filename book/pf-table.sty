@@ -7,6 +7,7 @@
 \usepackage{array}
 \usepackage{caption}
 \usepackage{ifthen}
+\usepackage{array}
 
 % Table Header
 \newcommand{\tableheader}[1]{{
@@ -81,6 +82,7 @@
 \newenvironment{pf-table2}[1][lX]{
     \par\vspace*{8pt}
     \noindent
+    \setlength{\extrarowheight}{5pt}% Add this line to set the spacing for each cell.
     \pfTableBodyFont %Select font
     \rowcolors{1}{tablecolor2}{tablecolor1} % Alternate colors
     \tabularx{\linewidth}{#1}
