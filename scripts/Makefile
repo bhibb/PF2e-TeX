@@ -19,5 +19,6 @@ FORCE:
 
 clean:
 	rm -rf build
+	rm -f *.aux *.log *.out *.toc *.bbl *.blg *.synctex.gz
 
 .PHONY: all clean FORCE tex
