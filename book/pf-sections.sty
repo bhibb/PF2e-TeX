@@ -61,28 +61,70 @@
   image=,
   title=Title,
   headerHeight=headerHeight,
-  textBodyHeight=textBodyHeight  
+  textBodyHeight=textBodyHeight
 ]{
+  % Use figure* to span the whole page width.
+  % We remove centering/spacing hacks here and let \includegraphics
+handle alignment relative to textwidth.
   \begin{figure*}[h]
-    \vspace*{-1.5cm}
-    \hspace*{-1.6cm}
-    \makebox[\paperwidth][c]{
-      \includegraphics[width=\paperwidth,height=15cm,keepaspectratio]{\commandkey{image}}
-    }
+    \vspace*{-2.5cm}
+    % Removed \hspace*{-1.6cm} and kept only a flush left structure.
+    % We wrap the image in a box that ensures it spans full width, but
+we avoid forcing center alignment on content.
+    \begin{minipage}{\paperwidth} % Use minipage to contain the
+spanning element
+      \includegraphics[width=\textwidth,height=15cm,keepaspectratio]{\c
+ommandkey{image}}
+    \end{minipage}
   \end{figure*}
 
-  \begin{center}
-    % You may need to adjust this vspace to make sure the title looks good with your image aspect ratio/pixels
-    \vspace*{\commandkey{headerHeight}}
-    \prociono%
-    \fontsize{48pt}{48pt}
-    \selectfont
-    \fillstroke{[1]}{[0]}{1.5}{\MakeUppercase{\commandkey{title}}}
-    \normalfont\normalsize
-  \end{center}
-  % You might need to adjust the vspace based on the aspect ratio/pixels of your splash image
+  % Removed \begin{center}. We now use a simple structure that flows
+naturally left.
+  % The content will align with the standard text margins defined by
+geometry.
+  \vspace*{\commandkey{headerHeight}}
+  \prociono%
+  \fontsize{48pt}{48pt}
+  \selectfont
+  % Added \raggedright to ensure the title block starts exactly at the
+left margin, even if it's centered text normally.
+  \parbox{\textwidth}{\MakeUppercase{\commandkey{title}}}
+  \normalfont\normalsize
+
+  % Add an extra line break or small space here to separate the title
+from the body content visually
+  \vspace{0.5em}
+
+  % Restore vertical spacing before text body
   \vspace{\commandkey{textBodyHeight}}
 }
+
+% \newkeycommand\pfMakeSplashHeader[
+%   image=,
+%   title=Title,
+%   headerHeight=headerHeight,
+%   textBodyHeight=textBodyHeight  
+% ]{
+%   \begin{figure*}[h]
+%     \vspace*{-2.5cm}
+%     \hspace*{-1.6cm}
+%     \makebox[\paperwidth][c]{
+%       \includegraphics[width=\paperwidth,height=15cm,keepaspectratio]{\commandkey{image}}
+%     }
+%   \end{figure*}
+
+%   \begin{center}
+%     % You may need to adjust this vspace to make sure the title looks good with your image aspect ratio/pixels
+%     \vspace*{\commandkey{headerHeight}}
+%     \prociono%
+%     \fontsize{48pt}{48pt}
+%     \selectfont
+%     \fillstroke{[1]}{[0]}{1.5}{\MakeUppercase{\commandkey{title}}}
+%     \normalfont\normalsize
+%   \end{center}
+%   % You might need to adjust the vspace based on the aspect ratio/pixels of your splash image
+%   \vspace{\commandkey{textBodyHeight}}
+% }
 
 %\newcommand*{\hbPartCover}{book/img/part-cover}
 %\newcommand*{\hbPartSubcover}{book/img/part-cover2}
