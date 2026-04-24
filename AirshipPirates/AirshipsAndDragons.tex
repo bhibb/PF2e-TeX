@@ -1,0 +1,132 @@
+%!TEX program = xelatex
+\documentclass[10pt,letterpaper,onecolumn,openany]{book}
+
+\usepackage{multicol} % Required for multicols
+
+% The main PF2e package.
+% Make sure the location is correct for where *you* put the library!!!
+\usepackage[bg=full]{../pf-book} % Options: bg-a4, bg-letter, bg-full, bg-print, bg-none.
+
+% Some extra packages
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Include graphicx package
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{geometry} % For controlling margins
+\usepackage{tcolorbox} % For creating the styled box
+\usepackage{lipsum}     % Dummy text generator (for testing)
+\usepackage{etoolbox}   % Helpful package for conditional logic and hooks
+\usepackage{tikz}
+
+% Sidebar box for Table of Contents
+\makeatletter
+\newsavebox{\sidebarBox}
+\newcommand{\rightSidebar}[1]{%
+  \setbox\sidebarBox\vbox{%
+    \begin{tcolorbox}[title={Table of Contents}, colback=gray!5, boxrule=1pt, arc=2mm, colframe=black, width=2cm]%
+      \vspace{2mm}%
+      \textbf{TOC Snippet:}\\%
+      \small This is a test. \\%
+      This is another test.%
+    \end{tcolorbox}%
+  }%
+  \begin{picture}(0,0)
+    \put(\dimexpr\textwidth - 2.5cm\relax, 0){\usebox{\sidebarBox}}% The cm number defines how far from the right side
+  \end{picture}%
+}
+\makeatother
+
+
+
+
+% \makeatletter
+% % Define a macro that checks for and executes content only on even pages.
+% \newcommand{\insertEvenPageSidebar}[1]{%
+%     \ifodd\count0
+%         % If the current page is odd, do nothing
+%     \else
+%         % \hfill
+%         \hspace{470pt}
+%         % If the current page is even:
+%         \vspace{0pt} % Reset vertical space just in case
+%         \begin{minipage}[r]{2cm} % The width of your sidebar/box
+%             \centering % Center content within the minipage
+%             \begin{tcolorbox}[title={Table of Contents},
+%               colback=gray!5,
+%               boxrule=1pt,
+%               arc=2mm,
+%               colframe=black,
+%               width=2cm, % Sidebar width
+%               ]
+%               % The content inside the box:
+%               \vspace{2mm}
+%               \textbf{TOC Snippet:} \\
+%               \small
+%               This is a test. \\
+%               This is another test.
+%             \end{tcolorbox}
+%         \end{minipage}%
+%     \fi
+% }
+% \makeatother
+
+% The following commands redefine Chapter to remove \cleardoublepage and \clearpage from \chapter
+% so that chapters don't automatically create new pages.
+\makeatletter
+\renewcommand\chapter{\thispagestyle{plain}%
+\global\@topnum\z@
+\@afterindentfalse
+\secdef\@chapter\@schapter}
+\makeatother
+
+% This is so we don't have Table of Contents explosion, remove if desired
+\setcounter{secnumdepth}{0}
+
+\usepackage{changepage} % Provides width/length manipulation tools
+
+% This is a helper to set more narrow margins only for text like the
+% regular Pathfinder adventures
+\newenvironment{textonlyarea}{%
+  \begin{adjustwidth}{.5in}{.5in}
+}{\end{adjustwidth}}
+
+% Start document
+\begin{document}
+
+\frontmatter
+
+% Your cover image, if you have one
+\pfMakeCover[
+  image = images/gauntlightkeep4,
+  title = Airships and Dragons,
+  subtitle = {A Pirate-themed adventure in the air!} % Need the braces if there is a comma in the name
+]
+
+Made by Bryson Starling.
+
+\InsertORC{No idea what to say is attributed here...\\
+}{Free to use\\
+}{what goes here too?}
+
+% Inserts Table of Contents
+\clearpage
+\tableofcontents
+% Need to clearpage and setcounter to 1 in order to not have an extra blank page
+\clearpage
+\setcounter{page}{1}
+
+% Your content goes here...
+\mainmatter
+
+% Formatting for the margins
+\begin{textonlyarea}
+
+% Put some kind of intro to the book here.
+
+% Chapters go here
+\include{pirates}
+
+\end{textonlyarea}
+
+\end{document}
