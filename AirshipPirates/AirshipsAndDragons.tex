@@ -31,11 +31,14 @@
       This is another test.%
     \end{tcolorbox}%
   }%
-  \begin{picture}(0,0)
-    \put(\dimexpr\textwidth - 2.5cm\relax, 0){\usebox{\sidebarBox}}% The cm number defines how far from the right side
-  \end{picture}%
+  \begin{tikzpicture}[remember picture, overlay]
+    \node at (current page.north east) [xshift=1.5cm, yshift=-5.5cm] {\usebox{\sidebarBox}};
+  \end{tikzpicture}%
 }
 \makeatother
+
+
+
 
 
 
