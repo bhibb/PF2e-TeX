@@ -18,6 +18,7 @@
 \usepackage{lipsum}     % Dummy text generator (for testing)
 \usepackage{etoolbox}   % Helpful package for conditional logic and hooks
 \usepackage{tikz}
+\usepackage{xparse}
 
 % % Sidebar box for Table of Contents
 % \makeatletter
@@ -37,7 +38,7 @@
 % }
 % \makeatother
 
-% Define the sidebar box
+% Define the sidebar box -- Manual for now
 \newsavebox{\sidebarBox}
 \newcommand{\addSidebar}{%
   \setbox\sidebarBox\vbox{%
@@ -54,10 +55,16 @@
   \end{tikzpicture}%
 }
 
-% Hook to add sidebar on even pages
-\AtBeginShipout{\ifnum\value{page} > 0 \ifodd\value{page}\else
-    \addSidebar
-\fi\fi}
+
+% DOES NOT QUITE WORK
+% \AtBeginShipout{%
+%   \ifnum\value{page} < 4 % Front matter (pages 1-3, mainmatter starts at page 4)
+%     \else
+%       \ifnum\numexpr\value{page} % 2 = 0 % Check if page is even
+%         \addSidebar
+%       \fi
+%     \fi
+% }
 
 
 % The following commands redefine Chapter to remove \cleardoublepage and \clearpage from \chapter
