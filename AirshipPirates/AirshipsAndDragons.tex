@@ -37,43 +37,6 @@
 }
 \makeatother
 
-
-
-
-
-
-
-% \makeatletter
-% % Define a macro that checks for and executes content only on even pages.
-% \newcommand{\insertEvenPageSidebar}[1]{%
-%     \ifodd\count0
-%         % If the current page is odd, do nothing
-%     \else
-%         % \hfill
-%         \hspace{470pt}
-%         % If the current page is even:
-%         \vspace{0pt} % Reset vertical space just in case
-%         \begin{minipage}[r]{2cm} % The width of your sidebar/box
-%             \centering % Center content within the minipage
-%             \begin{tcolorbox}[title={Table of Contents},
-%               colback=gray!5,
-%               boxrule=1pt,
-%               arc=2mm,
-%               colframe=black,
-%               width=2cm, % Sidebar width
-%               ]
-%               % The content inside the box:
-%               \vspace{2mm}
-%               \textbf{TOC Snippet:} \\
-%               \small
-%               This is a test. \\
-%               This is another test.
-%             \end{tcolorbox}
-%         \end{minipage}%
-%     \fi
-% }
-% \makeatother
-
 % The following commands redefine Chapter to remove \cleardoublepage and \clearpage from \chapter
 % so that chapters don't automatically create new pages.
 \makeatletter
