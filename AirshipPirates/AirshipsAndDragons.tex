@@ -19,10 +19,27 @@
 \usepackage{etoolbox}   % Helpful package for conditional logic and hooks
 \usepackage{tikz}
 
-% Sidebar box for Table of Contents
-\makeatletter
+% % Sidebar box for Table of Contents
+% \makeatletter
+% \newsavebox{\sidebarBox}
+% \newcommand{\rightSidebar}[1]{%
+%   \setbox\sidebarBox\vbox{%
+%     \begin{tcolorbox}[title={Table of Contents}, colback=gray!5, boxrule=1pt, arc=2mm, colframe=black, width=2cm]%
+%       \vspace{2mm}%
+%       \textbf{TOC Snippet:}\\%
+%       \small This is a test. \\%
+%       This is another test.%
+%     \end{tcolorbox}%
+%   }%
+%   \begin{tikzpicture}[remember picture, overlay]
+%     \node at (current page.north east) [xshift=1.5cm, yshift=-5.5cm] {\usebox{\sidebarBox}};
+%   \end{tikzpicture}%
+% }
+% \makeatother
+
+% Define the sidebar box
 \newsavebox{\sidebarBox}
-\newcommand{\rightSidebar}[1]{%
+\newcommand{\addSidebar}{%
   \setbox\sidebarBox\vbox{%
     \begin{tcolorbox}[title={Table of Contents}, colback=gray!5, boxrule=1pt, arc=2mm, colframe=black, width=2cm]%
       \vspace{2mm}%
@@ -31,11 +48,17 @@
       This is another test.%
     \end{tcolorbox}%
   }%
+  % Place the box using TikZ
   \begin{tikzpicture}[remember picture, overlay]
     \node at (current page.north east) [xshift=1.5cm, yshift=-5.5cm] {\usebox{\sidebarBox}};
   \end{tikzpicture}%
 }
-\makeatother
+
+% Hook to add sidebar on even pages
+\AtBeginShipout{\ifnum\value{page} > 0 \ifodd\value{page}\else
+    \addSidebar
+\fi\fi}
+
 
 % The following commands redefine Chapter to remove \cleardoublepage and \clearpage from \chapter
 % so that chapters don't automatically create new pages.
