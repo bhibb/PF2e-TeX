@@ -18,31 +18,12 @@
 \usepackage{lipsum}     % Dummy text generator (for testing)
 \usepackage{etoolbox}   % Helpful package for conditional logic and hooks
 \usepackage{tikz}
-\usepackage{xparse}
-
-% % Sidebar box for Table of Contents
-% \makeatletter
-% \newsavebox{\sidebarBox}
-% \newcommand{\rightSidebar}[1]{%
-%   \setbox\sidebarBox\vbox{%
-%     \begin{tcolorbox}[title={Table of Contents}, colback=gray!5, boxrule=1pt, arc=2mm, colframe=black, width=2cm]%
-%       \vspace{2mm}%
-%       \textbf{TOC Snippet:}\\%
-%       \small This is a test. \\%
-%       This is another test.%
-%     \end{tcolorbox}%
-%   }%
-%   \begin{tikzpicture}[remember picture, overlay]
-%     \node at (current page.north east) [xshift=1.5cm, yshift=-5.5cm] {\usebox{\sidebarBox}};
-%   \end{tikzpicture}%
-% }
-% \makeatother
 
 % Define the sidebar box -- Manual for now
 \newsavebox{\sidebarBox}
 \newcommand{\addSidebar}{%
   \setbox\sidebarBox\vbox{%
-    \begin{tcolorbox}[title={Table of Contents}, colback=gray!5, boxrule=1pt, arc=2mm, colframe=black, width=2cm]%
+    \begin{tcolorbox}[title={Table of Contents}, colback=brown!10!white, boxrule=0.5pt, arc=2mm, colframe=brown, width=2cm]%
       \vspace{2mm}%
       \textbf{TOC Snippet:}\\%
       \small This is a test. \\%
