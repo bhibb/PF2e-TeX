@@ -84,6 +84,39 @@
   \vspace{\commandkey{textBodyHeight}}
 }
 
+% Define the sidebar box
+% You need to manually tweak the settings for color, etc.
+
+\newkeycommand\pfSidebar[
+  backgroundImage=,
+  title=Title,
+  content=Content
+]{
+  % Place the box using TikZ. Play with the shifts to get the location you want on the page.
+  \begin{tikzpicture}[remember picture, overlay]
+    \node at (current page.north east) [xshift=1.25cm, yshift=-3cm] {\begin{tcolorbox}[frame style tile={width=2cm,height=11cm}{\commandkey{backgroundImage}},
+      title={\centering \commandkey{title}},
+      colback=red!5!white,
+      coltitle=red!30!black,
+      colframe=brown, 
+      opacityback=0.50,
+      boxrule=0.5pt, % outline
+      arc=2mm, % rounded corners, maybe not necessary with beamer theme
+      width=2cm,
+      left=1pt, % left and right are how close internal text gets to the edges of the box
+      right=1pt,
+      interior titled code app={\path[tcb fill interior]
+([yshift=-0.1pt]interior.north east)
+--([yshift=3pt]interior.north)
+--([yshift=-0.1pt]interior.north west)
+--cycle;}]%
+      \centering%
+      \small \commandkey{Content}
+    \end{tcolorbox}%
+    };
+  \end{tikzpicture}%
+}
+
 %\newcommand*{\hbPartCover}{book/img/part-cover}
 %\newcommand*{\hbPartSubcover}{book/img/part-cover2}
 %

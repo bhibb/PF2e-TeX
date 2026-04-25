@@ -19,34 +19,37 @@
 \usepackage{etoolbox}   % Helpful package for conditional logic and hooks
 \usepackage{tikz}
 
-% Define the sidebar box -- Manual for now
+% Define the sidebar box
 \newsavebox{\sidebarBox}
 \newcommand{\addSidebar}{%
   \setbox\sidebarBox\vbox{%
-    \begin{tcolorbox}[title={Table of Contents}, colback=brown!10!white, boxrule=0.5pt, arc=2mm, colframe=brown, width=2cm]%
-      \vspace{2mm}%
-      \textbf{TOC Snippet:}\\%
-      \small This is a test. \\%
-      This is another test.%
+    \begin{tcolorbox}[beamer, frame style tile={width=2cm,height=11cm}{../book/img/scratched-background.jpg},
+      title={\centering Airship Pirates},
+      colback=red!5!white,
+      coltitle=red!30!black,
+      colframe=brown, 
+      opacityback=0.50,
+      boxrule=0.5pt, 
+      arc=2mm, 
+      width=2cm,
+      left=1pt,
+      right=1pt,
+      interior titled code app={\path[tcb fill interior]
+([yshift=-0.1pt]interior.north east)
+--([yshift=3pt]interior.north)
+--([yshift=-0.1pt]interior.north west)
+--cycle;}]%
+      \centering%
+      \textbf{Overview}\\%
+      \small The Adventure\\%
+      Conclusion%
     \end{tcolorbox}%
   }%
-  % Place the box using TikZ
+  % Place the box using TikZ. Play with the shifts to get the location you want on the page.
   \begin{tikzpicture}[remember picture, overlay]
-    \node at (current page.north east) [xshift=1.5cm, yshift=-5.5cm] {\usebox{\sidebarBox}};
+    \node at (current page.north east) [xshift=1.25cm, yshift=-3cm] {\usebox{\sidebarBox}};
   \end{tikzpicture}%
 }
-
-
-% DOES NOT QUITE WORK
-% \AtBeginShipout{%
-%   \ifnum\value{page} < 4 % Front matter (pages 1-3, mainmatter starts at page 4)
-%     \else
-%       \ifnum\numexpr\value{page} % 2 = 0 % Check if page is even
-%         \addSidebar
-%       \fi
-%     \fi
-% }
-
 
 % The following commands redefine Chapter to remove \cleardoublepage and \clearpage from \chapter
 % so that chapters don't automatically create new pages.
