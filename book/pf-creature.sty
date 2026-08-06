@@ -28,6 +28,27 @@
   #1
 }
 
+% Basic creature box
+\newtcolorbox{hazardbox}[3][]{
+  enhanced,
+  frame hidden,
+  boxrule=0pt,
+  breakable,
+  boxsep=0pt,
+  toptitle=3mm,
+  left=0pt,
+  right=0pt,
+  arc=0mm,
+  opacityback=0,
+  colframe=title1,
+  fonttitle=\pfStatBlockTitleFont,
+  fontupper=\pfStatBlockBodyFont,
+  title={#2 \hfill Hazard #3},
+  before upper={\pfhline{}\\},
+  coltitle=hazard,
+  #1
+}
+
 % A pf@creatureattrs helper macro that always displays an attribute.
 \newcommand{\pf@creatureattr}[2]{%
   \textbf{#2} \commandkey{#1}%
