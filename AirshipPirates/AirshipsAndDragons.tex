@@ -67,7 +67,8 @@
 % This is a helper to set more narrow margins only for text like the
 % regular Pathfinder adventures
 \newenvironment{textonlyarea}{%
-  \begin{adjustwidth}{.5in}{.5in}
+  \setlength{\multicolsep}{0pt}
+  \begin{adjustwidth}{.45in}{.45in}
 }{\end{adjustwidth}}
 
 % Start document
